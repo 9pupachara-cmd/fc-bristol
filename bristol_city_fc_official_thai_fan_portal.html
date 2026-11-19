@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bristol City FC | The Robins • Pride of Bristol</title>
+    
+    <!-- Google Fonts: Kanit & Prompt สำหรับภาษาไทยสไตล์สปอร์ตทันสมัย -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,600&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bristol: {
+                            red: '#E21A23',
+                            darkred: '#B01118',
+                            charcoal: '#141414',
+                            darkcard: '#1E1E1E',
+                            gold: '#D4AF37',
+                            copper: '#C87D55',
+                            light: '#F8F9FA'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Prompt', 'sans-serif'],
+                        display: ['Kanit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Styles & Animations */
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: #141414;
+            color: #FFFFFF;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, .font-sport {
+            font-family: 'Kanit', sans-serif;
+        }
+
+        /* Glassmorphism */
+        .glass-nav {
+            background: rgba(20, 20, 20, 0.88);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-card {
+            background: rgba(30, 30, 30, 0.75);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Hero Pattern & Gradient */
+        .hero-bg {
+            background: 
+                radial-gradient(circle at 75% 30%, rgba(226, 26, 35, 0.35) 0%, rgba(20, 20, 20, 0.92) 60%),
+                linear-gradient(135deg, #141414 0%, #240709 50%, #141414 100%);
+        }
+
+        /* Stadium Pitch SVG Interactive Styles */
+        .stand-zone {
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .stand-zone:hover {
+            filter: brightness(1.2);
+            transform: scale(1.015);
+            transform-origin: center;
+        }
+        .stand-active {
+            stroke: #D4AF37 !important;
+            stroke-width: 3px !important;
+            filter: drop-shadow(0 0 12px rgba(226, 26, 35, 0.8));
+        }
+
+        /* Active Nav Link */
+        .nav-link.active {
+            color: #E21A23;
+            position: relative;
+        }
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #E21A23;
+            border-radius: 99px;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #141414;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #E21A23;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #B01118;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-bristol-red selection:text-white">
+
+    <!-- ==================== 1. STICKY NAVIGATION BAR ==================== -->
+    <header id="navbar" class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo & Brand -->
+                <a href="#home" class="flex items-center gap-3 group">
+                    <!-- Custom Vector SVG: Bristol City Robin Crest -->
+                    <div class="w-12 h-12 rounded-full bg-bristol-red p-1.5 flex items-center justify-center shadow-lg shadow-bristol-red/30 group-hover:scale-105 transition-transform border-2 border-white">
+                        <svg viewBox="0 0 100 100" class="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Shield / Circle inner -->
+                            <circle cx="50" cy="50" r="44" fill="#FFFFFF"/>
+                            <circle cx="50" cy="50" r="40" stroke="#E21A23" stroke-width="2.5"/>
+                            <!-- Robin Silhouette Stylized -->
+                            <path d="M68 35C65 29 58 27 52 30C47 32 43 38 38 43C32 49 24 53 20 56C25 57 31 56 35 55C34 61 38 68 45 70L43 79H48L50 71C53 71 55 71 57 70L59 79H64L61 68C68 64 72 55 70 46C73 44 77 42 80 41C76 39 71 38 68 35Z" fill="#141414"/>
+                            <!-- Robin Red Breast -->
+                            <path d="M68 35C69 41 68 49 62 54C56 59 49 59 45 55C48 48 53 39 60 35C63 33 66 34 68 35Z" fill="#E21A23"/>
+                            <!-- Eye -->
+                            <circle cx="66" cy="36" r="1.8" fill="#FFFFFF"/>
+                            <!-- EST 1894 -->
+                            <text x="50" y="87" text-anchor="middle" fill="#141414" font-size="8" font-weight="bold" font-family="Kanit">1894</text>
+                        </svg>
+                    </div>
+                    <div>
+                        <span class="font-sport font-extrabold text-xl sm:text-2xl tracking-wider text-white block leading-none">
+                            BRISTOL <span class="text-bristol-red">CITY</span> FC
+                        </span>
+                        <span class="text-[11px] uppercase tracking-[0.2em] text-bristol-gold font-medium">The Robins • Est. 1894</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Menu -->
+                <nav class="hidden lg:flex items-center space-x-7 text-sm font-medium">
+                    <a href="#home" class="nav-link active text-white hover:text-bristol-red transition py-1">หน้าแรก</a>
+                    <a href="#history" class="nav-link text-gray-300 hover:text-bristol-red transition py-1">ประวัติสโมสร</a>
+                    <a href="#stadium" class="nav-link text-gray-300 hover:text-bristol-red transition py-1">สนามเหย้า</a>
+                    <a href="#squad" class="nav-link text-gray-300 hover:text-bristol-red transition py-1">รายชื่อนักเตะ</a>
+                    <a href="#fixtures" class="nav-link text-gray-300 hover:text-bristol-red transition py-1">ตารางแข่งขัน</a>
+                    <a href="#news" class="nav-link text-gray-300 hover:text-bristol-red transition py-1">ข่าวสารสโมสร</a>
+                </nav>
+
+                <!-- CTA & Mobile Toggle -->
+                <div class="flex items-center gap-3">
+                    <a href="#fixtures" class="hidden sm:inline-flex items-center gap-2 bg-bristol-red hover:bg-bristol-darkred text-white text-sm font-semibold px-4 py-2.5 rounded-full transition shadow-lg shadow-bristol-red/30">
+                        <i class="fa-solid fa-ticket"></i>
+                        <span>แมตช์ถัดไป</span>
+                    </a>
+                    
+                    <button id="mobile-menu-btn" aria-label="เปิดเมนู" class="lg:hidden p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-white focus:outline-none">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-bristol-charcoal border-t border-white/10 px-4 pt-3 pb-6 space-y-2">
+            <a href="#home" class="mobile-link block px-4 py-3 rounded-xl text-base font-medium text-white bg-bristol-red/20 border-l-4 border-bristol-red">หน้าแรก</a>
+            <a href="#history" class="mobile-link block px-4 py-3 rounded-xl text-base font-medium text-gray-300 hover:bg-white/5">ประวัติสโมสร (History)</a>
+            <a href="#stadium" class="mobile-link block px-4 py-3 rounded-xl text-base font-medium text-gray-300 hover:bg-white/5">สนามเหย้า (Ashton Gate)</a>
+            <a href="#squad" class="mobile-link block px-4 py-3 rounded-xl text-base font-medium text-gray-300 hover:bg-white/5">รายชื่อนักเตะ (Squad)</a>
+            <a href="#fixtures" class="mobile-link block px-4 py-3 rounded-xl text-base font-medium text-gray-300 hover:bg-white/5">ตารางแข่งขันและผลงาน</a>
+            <a href="#news" class="mobile-link block px-4 py-3 rounded-xl text-base font-medium text-gray-300 hover:bg-white/5">ข่าวสารและบทความ</a>
+        </div>
+    </header>
+
+    <!-- ==================== 2. HERO SECTION ==================== -->
+    <section id="home" class="relative min-h-screen flex items-center pt-24 pb-16 hero-bg overflow-hidden">
+        <!-- Decorative Background Elements -->
+        <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 32px 32px;"></div>
+        <div class="absolute -right-24 top-1/4 w-96 h-96 bg-bristol-red/20 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -left-24 bottom-10 w-80 h-80 bg-bristol-gold/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <!-- Left Content -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-bristol-red/15 border border-bristol-red/40 text-bristol-red text-xs sm:text-sm font-semibold tracking-wide">
+                        <span class="w-2 h-2 rounded-full bg-bristol-red animate-ping"></span>
+                        <span>EFL CHAMPIONSHIP • สโมสรฟุตบอลบริสตอล ซิตี้</span>
+                    </div>
+
+                    <h1 class="font-sport text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.1] text-white">
+                        THE ROBINS <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-bristol-red via-red-400 to-bristol-gold">
+                            PRIDE OF BRISTOL
+                        </span>
+                    </h1>
+
+                    <p class="text-gray-300 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed font-light">
+                        ความภาคภูมิใจแห่งภาคตะวันตกเฉียงใต้ของอังกฤษ สโมสรที่มีประวัติศาสตร์ยาวนานกว่า 130 ปี 
+                        พร้อมจิตวิญญาณนักสู้แห่งถิ่น <strong class="text-white font-medium">Ashton Gate Stadium</strong>
+                    </p>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                        <a href="#squad" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-bristol-red hover:bg-bristol-darkred text-white font-semibold text-base transition transform hover:-translate-y-0.5 shadow-xl shadow-bristol-red/30 flex items-center justify-center gap-2">
+                            <span>สำรวจขุมกำลังนักเตะ</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <a href="#history" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-white/10 hover:bg-white/15 border border-white/15 text-white font-semibold text-base transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-landmark text-bristol-gold"></i>
+                            <span>ตำนาน 1894</span>
+                        </a>
+                    </div>
+
+                    <!-- Quick Key Stats -->
+                    <div class="grid grid-cols-3 gap-4 pt-6 border-t border-white/10 max-w-xl mx-auto lg:mx-0">
+                        <div>
+                            <div class="font-sport text-2xl sm:text-3xl font-extrabold text-white">1894</div>
+                            <div class="text-xs sm:text-sm text-gray-400">ปีที่ก่อตั้งสโมสร</div>
+                        </div>
+                        <div>
+                            <div class="font-sport text-2xl sm:text-3xl font-extrabold text-bristol-red">27,000</div>
+                            <div class="text-xs sm:text-sm text-gray-400">ความจุแอชตัน เกต</div>
+                        </div>
+                        <div>
+                            <div class="font-sport text-2xl sm:text-3xl font-extrabold text-bristol-gold">1909</div>
+                            <div class="text-xs sm:text-sm text-gray-400">รองแชมป์เอฟเอคัพ</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Feature Card: Next Match & Crest Visual -->
+                <div class="lg:col-span-5">
+                    <div class="glass-card rounded-3xl p-6 sm:p-8 relative overflow-hidden shadow-2xl border border-white/15">
+                        <div class="absolute top-0 right-0 bg-bristol-red text-white text-xs font-bold px-4 py-1.5 rounded-bl-2xl">
+                            MATCHDAY SPOTLIGHT
+                        </div>
+
+                        <div class="flex items-center gap-2 text-bristol-gold text-xs font-semibold uppercase tracking-wider mb-4">
+                            <i class="fa-solid fa-trophy"></i>
+                            <span>Sky Bet EFL Championship</span>
+                        </div>
+
+                        <!-- Teams VS -->
+                        <div class="flex items-center justify-between gap-4 my-6">
+                            <div class="text-center flex-1">
+                                <div class="w-16 h-16 sm:w-20 sm:h-20 mx-auto rounded-full bg-bristol-red p-2 border-2 border-white shadow-lg flex items-center justify-center mb-2">
+                                    <span class="font-sport font-black text-2xl text-white">BCFC</span>
+                                </div>
+                                <h3 class="font-bold text-white text-sm sm:text-base">Bristol City</h3>
+                                <span class="text-xs text-gray-400">(เหย้า)</span>
+                            </div>
+
+                            <div class="text-center">
+                                <span class="px-3 py-1 rounded-lg bg-white/10 font-sport font-bold text-lg text-bristol-gold">VS</span>
+                                <p class="text-[11px] text-gray-400 mt-2">เสาร์นี้ • 22:00 น.</p>
+                            </div>
+
+                            <div class="text-center flex-1">
+                                <div class="w-16 h-16 sm:w-20 sm:h-20 mx-auto rounded-full bg-slate-800 p-2 border-2 border-slate-600 shadow-lg flex items-center justify-center mb-2">
+                                    <span class="font-sport font-black text-2xl text-sky-400">CCFC</span>
+                                </div>
+                                <h3 class="font-bold text-white text-sm sm:text-base">Coventry City</h3>
+                                <span class="text-xs text-gray-400">(เยือน)</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-black/40 rounded-2xl p-4 space-y-2 text-xs sm:text-sm text-gray-300">
+                            <div class="flex justify-between">
+                                <span class="text-gray-400"><i class="fa-solid fa-location-dot text-bristol-red mr-1.5"></i>สนามแข่งขัน:</span>
+                                <span class="font-medium text-white">Ashton Gate Stadium</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400"><i class="fa-solid fa-chart-line text-bristol-gold mr-1.5"></i>ฟอร์ม 5 นัดหลัง:</span>
+                                <span class="flex gap-1 font-bold">
+                                    <span class="w-5 h-5 rounded bg-emerald-600 text-white flex items-center justify-center text-[10px]">W</span>
+                                    <span class="w-5 h-5 rounded bg-amber-500 text-black flex items-center justify-center text-[10px]">D</span>
+                                    <span class="w-5 h-5 rounded bg-emerald-600 text-white flex items-center justify-center text-[10px]">W</span>
+                                    <span class="w-5 h-5 rounded bg-rose-600 text-white flex items-center justify-center text-[10px]">L</span>
+                                    <span class="w-5 h-5 rounded bg-emerald-600 text-white flex items-center justify-center text-[10px]">W</span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <a href="#fixtures" class="mt-5 w-full block text-center py-3 rounded-xl bg-white text-bristol-charcoal hover:bg-gray-200 font-bold text-sm transition">
+                            ดูโปรแกรมและผลการแข่งขันทั้งหมด
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 3. CLUB HISTORY & INTERACTIVE TIMELINE ==================== -->
+    <section id="history" class="py-20 bg-[#181818] border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="text-bristol-red font-semibold text-sm uppercase tracking-widest">Club Heritage</span>
+                <h2 class="font-sport text-3xl sm:text-5xl font-extrabold text-white mt-2">
+                    ประวัติศาสตร์และเกียรติประวัติ <span class="text-bristol-red">เดอะ โรบินส์</span>
+                </h2>
+                <p class="text-gray-400 mt-4 text-sm sm:text-base">
+                    จากจุดเริ่มต้นในชื่อ Bristol South End สู่การเป็นสัญลักษณ์แห่งเมืองบริสตอลที่มีเอกลักษณ์สีแดง-ขาวอันเลื่องชื่อ
+                </p>
+            </div>
+
+            <!-- Story Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-14">
+                <div class="glass-card p-6 rounded-3xl hover:border-bristol-red/50 transition">
+                    <div class="w-12 h-12 rounded-2xl bg-bristol-red/20 text-bristol-red flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3 class="font-sport text-xl font-bold text-white mb-2">กำเนิดสโมสรปี 1894</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        ก่อตั้งขึ้นในปี 1894 ในชื่อ <strong class="text-white">Bristol South End</strong> ก่อนจะเปลี่ยนชื่อเป็น Bristol City ในปี 1897 เมื่อก้าวเข้าสู่ระดับฟุตบอลอาชีพอย่างเต็มตัว
+                    </p>
+                </div>
+
+                <div class="glass-card p-6 rounded-3xl hover:border-bristol-red/50 transition">
+                    <div class="w-12 h-12 rounded-2xl bg-bristol-gold/20 text-bristol-gold flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-feather-pointed"></i>
+                    </div>
+                    <h3 class="font-sport text-xl font-bold text-white mb-2">ทำไมถึงชื่อ "The Robins"?</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        ฉายา <strong class="text-white">"นกโรบิน" (The Robins)</strong> มาจากชุดแข่งสีแดงสดและกางเกงสีขาวอันเป็นเอกลักษณ์ ซึ่งคล้ายกับนกโรบินอกแดง สัญลักษณ์แห่งความกล้าหาญ
+                    </p>
+                </div>
+
+                <div class="glass-card p-6 rounded-3xl hover:border-bristol-red/50 transition">
+                    <div class="w-12 h-12 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-trophy"></i>
+                    </div>
+                    <h3 class="font-sport text-xl font-bold text-white mb-2">เกียรติประวัติสำคัญ</h3>
+                    <ul class="text-gray-400 text-sm space-y-1.5">
+                        <li>• รองแชมป์ลีกสูงสุดอังกฤษ (First Division): 1906–07</li>
+                        <li>• รองแชมป์ FA Cup: 1909</li>
+                        <li>• แชมป์ Football League Trophy: 1986, 2003, 2015</li>
+                        <li>• แชมป์ Welsh Cup: 1934</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Interactive Timeline -->
+            <div class="bg-bristol-darkcard rounded-3xl p-6 sm:p-10 border border-white/10">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+                    <div>
+                        <h3 class="font-sport text-2xl font-bold text-white">เส้นทางประวัติศาสตร์ (Interactive Timeline)</h3>
+                        <p class="text-xs sm:text-sm text-gray-400">คลิกเลือกปีสำคัญด้านล่างเพื่อดูเหตุการณ์ประวัติศาสตร์ของสโมสร</p>
+                    </div>
+                    <span class="inline-flex items-center gap-1.5 text-xs bg-bristol-red/20 text-bristol-red px-3 py-1.5 rounded-full font-medium">
+                        <i class="fa-solid fa-hand-pointer"></i> คลิกที่ปีเพื่ออ่านรายละเอียด
+                    </span>
+                </div>
+
+                <!-- Timeline Year Selector Buttons -->
+                <div id="timeline-buttons" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-8">
+                    <!-- Injected via JS -->
+                </div>
+
+                <!-- Timeline Display Box -->
+                <div id="timeline-content" class="bg-black/40 rounded-2xl p-6 sm:p-8 border-l-4 border-bristol-red transition-all duration-300">
+                    <!-- Injected via JS -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 4. HOME STADIUM: ASHTON GATE ==================== -->
+    <section id="stadium" class="py-20 bg-bristol-charcoal border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="text-bristol-gold font-semibold text-sm uppercase tracking-widest">The Fortress</span>
+                <h2 class="font-sport text-3xl sm:text-5xl font-extrabold text-white mt-2">
+                    สนามเหย้า <span class="text-bristol-red">ASHTON GATE STADIUM</span>
+                </h2>
+                <p class="text-gray-400 mt-4 text-sm sm:text-base">
+                    ป้อมปราการความจุ 27,000 ที่นั่งทางตะวันตกเฉียงใต้ของเมืองบริสตอล โดดเด่นด้วยบรรยากาศที่ดุดันและทันสมัยระดับพรีเมียร์ลีก
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <!-- Interactive Stadium Map (SVG) -->
+                <div class="lg:col-span-7 bg-bristol-darkcard p-6 sm:p-8 rounded-3xl border border-white/10">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-sm font-semibold text-white"><i class="fa-solid fa-map text-bristol-red mr-2"></i>แผนผังอัฒจันทร์ (คลิกเลือกโซนที่นั่ง)</span>
+                        <span class="text-xs text-gray-400">ความจุรวม: 27,000 ที่นั่ง</span>
+                    </div>
+
+                    <!-- Interactive SVG Stadium Bowl -->
+                    <div class="w-full max-w-lg mx-auto my-4">
+                        <svg viewBox="0 0 500 360" class="w-full h-auto select-none">
+                            <!-- Outer Stadium Shell -->
+                            <rect x="10" y="10" width="480" height="340" rx="45" fill="#141414" stroke="#333" stroke-width="2"/>
+                            
+                            <!-- Top Stand: Dolman Stand -->
+                            <g id="stand-dolman" class="stand-zone stand-active" onclick="selectStand('dolman')">
+                                <path d="M 110 25 L 390 25 L 365 75 L 135 75 Z" rx="8" fill="#E21A23" stroke="#FFFFFF" stroke-width="1.5"/>
+                                <text x="250" y="55" text-anchor="middle" fill="#FFFFFF" font-family="Kanit" font-weight="bold" font-size="14">DOLMAN STAND (ฝั่งตะวันออก)</text>
+                            </g>
+
+                            <!-- Bottom Stand: Lansdown Stand -->
+                            <g id="stand-lansdown" class="stand-zone" onclick="selectStand('lansdown')">
+                                <path d="M 135 285 L 365 285 L 390 335 L 110 335 Z" fill="#B01118" stroke="#FFFFFF" stroke-width="1.5"/>
+                                <text x="250" y="315" text-anchor="middle" fill="#FFFFFF" font-family="Kanit" font-weight="bold" font-size="14">LANSDOWN STAND (อัฒจันทร์หลัก 2 ชั้น)</text>
+                            </g>
+
+                            <!-- Left Stand: South Stand -->
+                            <g id="stand-south" class="stand-zone" onclick="selectStand('south')">
+                                <path d="M 30 85 L 85 110 L 85 250 L 30 275 Z" fill="#2A2A2A" stroke="#E21A23" stroke-width="2"/>
+                                <text x="58" y="180" text-anchor="middle" fill="#FFFFFF" font-family="Kanit" font-weight="bold" font-size="12" transform="rotate(-90 58 180)">SOUTH STAND</text>
+                            </g>
+
+                            <!-- Right Stand: Atyeo Stand -->
+                            <g id="stand-atyeo" class="stand-zone" onclick="selectStand('atyeo')">
+                                <path d="M 415 110 L 470 85 L 470 275 L 415 250 Z" fill="#2A2A2A" stroke="#D4AF37" stroke-width="2"/>
+                                <text x="442" y="180" text-anchor="middle" fill="#D4AF37" font-family="Kanit" font-weight="bold" font-size="12" transform="rotate(90 442 180)">ATYEO STAND</text>
+                            </g>
+
+                            <!-- Football Pitch -->
+                            <rect x="105" y="90" width="290" height="180" rx="6" fill="#1B5E20" stroke="#4CAF50" stroke-width="2"/>
+                            <!-- Pitch Lines -->
+                            <line x1="250" y1="90" x2="250" y2="270" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/>
+                            <circle cx="250" cy="180" r="28" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/>
+                            <circle cx="250" cy="180" r="3" fill="#FFFFFF"/>
+                            <!-- Penalty Boxes -->
+                            <rect x="105" y="135" width="42" height="90" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/>
+                            <rect x="353" y="135" width="42" height="90" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/>
+                            <text x="250" y="184" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-family="Kanit" font-weight="bold" font-size="16">ASHTON GATE</text>
+                        </svg>
+                    </div>
+
+                    <!-- Quick Stand Buttons for Mobile Accessibility -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-4">
+                        <button onclick="selectStand('dolman')" class="stand-btn px-3 py-2 rounded-xl text-xs font-semibold bg-bristol-red text-white transition" data-stand="dolman">Dolman Stand</button>
+                        <button onclick="selectStand('lansdown')" class="stand-btn px-3 py-2 rounded-xl text-xs font-semibold bg-white/10 text-gray-300 hover:bg-white/20 transition" data-stand="lansdown">Lansdown Stand</button>
+                        <button onclick="selectStand('south')" class="stand-btn px-3 py-2 rounded-xl text-xs font-semibold bg-white/10 text-gray-300 hover:bg-white/20 transition" data-stand="south">South Stand</button>
+                        <button onclick="selectStand('atyeo')" class="stand-btn px-3 py-2 rounded-xl text-xs font-semibold bg-white/10 text-gray-300 hover:bg-white/20 transition" data-stand="atyeo">Atyeo Stand</button>
+                    </div>
+                </div>
+
+                <!-- Stand Details Panel -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div id="stand-detail-card" class="glass-card p-6 sm:p-8 rounded-3xl border-t-4 border-bristol-red">
+                        <!-- Dynamically Populated by JS -->
+                    </div>
+
+                    <!-- Stadium Info Badges -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-bristol-darkcard p-4 rounded-2xl border border-white/5">
+                            <div class="text-xs text-gray-400">เปิดใช้งานครั้งแรก</div>
+                            <div class="font-sport text-lg font-bold text-white mt-0.5">ปี 1887 (ปรับปรุง 2016)</div>
+                        </div>
+                        <div class="bg-bristol-darkcard p-4 rounded-2xl border border-white/5">
+                            <div class="text-xs text-gray-400">พื้นสนาม</div>
+                            <div class="font-sport text-lg font-bold text-emerald-400 mt-0.5">Desso GrassMaster</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 5. FIRST TEAM SQUAD ==================== -->
+    <section id="squad" class="py-20 bg-[#181818] border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+                <div>
+                    <span class="text-bristol-red font-semibold text-sm uppercase tracking-widest">First Team Squad</span>
+                    <h2 class="font-sport text-3xl sm:text-5xl font-extrabold text-white mt-2">
+                        ขุมกำลังนักเตะ <span class="text-bristol-red">ชุดใหญ่</span>
+                    </h2>
+                    <p class="text-gray-400 mt-2 text-sm sm:text-base">
+                        คลิกที่การ์ดนักเตะแต่ละคนเพื่อดูข้อมูลประวัติและสถิติเชิงลึก
+                    </p>
+                </div>
+
+                <!-- Position Filter Tabs -->
+                <div class="flex flex-wrap gap-2" id="squad-filters">
+                    <button onclick="filterSquad('ALL')" class="filter-btn active px-4 py-2.5 rounded-xl text-sm font-semibold bg-bristol-red text-white transition" data-pos="ALL">ทั้งหมด</button>
+                    <button onclick="filterSquad('GK')" class="filter-btn px-4 py-2.5 rounded-xl text-sm font-semibold bg-white/5 text-gray-300 hover:bg-white/10 transition" data-pos="GK">ผู้รักษาประตู</button>
+                    <button onclick="filterSquad('DEF')" class="filter-btn px-4 py-2.5 rounded-xl text-sm font-semibold bg-white/5 text-gray-300 hover:bg-white/10 transition" data-pos="DEF">กองหลัง</button>
+                    <button onclick="filterSquad('MID')" class="filter-btn px-4 py-2.5 rounded-xl text-sm font-semibold bg-white/5 text-gray-300 hover:bg-white/10 transition" data-pos="MID">กองกลาง</button>
+                    <button onclick="filterSquad('FWD')" class="filter-btn px-4 py-2.5 rounded-xl text-sm font-semibold bg-white/5 text-gray-300 hover:bg-white/10 transition" data-pos="FWD">กองหน้า</button>
+                </div>
+            </div>
+
+            <!-- Players Grid -->
+            <div id="squad-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 6. FIXTURES & RESULTS ==================== -->
+    <section id="fixtures" class="py-20 bg-bristol-charcoal border-t border-white/5">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="text-bristol-gold font-semibold text-sm uppercase tracking-widest">Match Centre</span>
+                <h2 class="font-sport text-3xl sm:text-5xl font-extrabold text-white mt-2">
+                    ตารางแข่งขันและ <span class="text-bristol-red">ผลการแข่งขัน</span>
+                </h2>
+                
+                <!-- Switch Tabs -->
+                <div class="inline-flex p-1.5 rounded-2xl bg-bristol-darkcard border border-white/10 mt-6">
+                    <button id="tab-upcoming" onclick="switchMatchTab('upcoming')" class="px-6 py-2.5 rounded-xl text-sm font-bold bg-bristol-red text-white transition shadow">
+                        <i class="fa-regular fa-calendar-days mr-1.5"></i>โปรแกรมถัดไป
+                    </button>
+                    <button id="tab-results" onclick="switchMatchTab('results')" class="px-6 py-2.5 rounded-xl text-sm font-bold text-gray-400 hover:text-white transition">
+                        <i class="fa-solid fa-square-poll-vertical mr-1.5"></i>ผลการแข่งขันล่าสุด
+                    </button>
+                </div>
+            </div>
+
+            <!-- Match List Container -->
+            <div id="matches-container" class="space-y-4">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== NEWS & CLUB UPDATES ==================== -->
+    <section id="news" class="py-20 bg-[#181818] border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
+                <div>
+                    <span class="text-bristol-red font-semibold text-sm uppercase tracking-widest">Robins Insider</span>
+                    <h2 class="font-sport text-3xl sm:text-5xl font-extrabold text-white mt-2">
+                        ข่าวสารและ <span class="text-bristol-red">ความเคลื่อนไหว</span>
+                    </h2>
+                </div>
+                <p class="text-sm text-gray-400">คลิกที่ข่าวเพื่ออ่านบทความฉบับเต็ม</p>
+            </div>
+
+            <div id="news-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 7. FOOTER ==================== -->
+    <footer class="bg-[#0D0D0D] border-t border-white/10 pt-16 pb-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-white/10">
+                <!-- Brand -->
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-bristol-red flex items-center justify-center font-sport font-black text-white border border-white">
+                            BC
+                        </div>
+                        <span class="font-sport font-extrabold text-xl text-white">BRISTOL CITY FC</span>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        เว็บไซต์ข้อมูลสโมสรฟุตบอล บริสตอล ซิตี้ ภาคภาษาไทย รวบรวมประวัติศาสตร์ ข้อมูลสนามแอชตัน เกต รายชื่อนักเตะ และโปรแกรมการแข่งขันศึก EFL Championship
+                    </p>
+                    <!-- Social Links -->
+                    <div class="flex items-center gap-3 pt-2">
+                        <a href="#home" aria-label="Facebook" class="w-10 h-10 rounded-full bg-white/5 hover:bg-bristol-red text-white flex items-center justify-center transition">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                        <a href="#home" aria-label="X Twitter" class="w-10 h-10 rounded-full bg-white/5 hover:bg-bristol-red text-white flex items-center justify-center transition">
+                            <i class="fa-brands fa-x-twitter"></i>
+                        </a>
+                        <a href="#home" aria-label="Instagram" class="w-10 h-10 rounded-full bg-white/5 hover:bg-bristol-red text-white flex items-center justify-center transition">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="#home" aria-label="YouTube" class="w-10 h-10 rounded-full bg-white/5 hover:bg-bristol-red text-white flex items-center justify-center transition">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-sport font-bold text-white text-lg mb-4">เมนูลัด</h4>
+                    <ul class="space-y-2.5 text-sm text-gray-400">
+                        <li><a href="#home" class="hover:text-bristol-red transition">หน้าแรก (Home)</a></li>
+                        <li><a href="#history" class="hover:text-bristol-red transition">ประวัติสโมสร (History)</a></li>
+                        <li><a href="#stadium" class="hover:text-bristol-red transition">สนามเหย้า Ashton Gate</a></li>
+                        <li><a href="#squad" class="hover:text-bristol-red transition">รายชื่อนักเตะ (First Team)</a></li>
+                        <li><a href="#fixtures" class="hover:text-bristol-red transition">ตารางแข่งขันและผลงาน</a></li>
+                    </ul>
+                </div>
+
+                <!-- Stadium Contact -->
+                <div>
+                    <h4 class="font-sport font-bold text-white text-lg mb-4">ข้อมูลติดต่อสนาม</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-location-dot text-bristol-red mt-1"></i>
+                            <span>Ashton Gate Stadium, Ashton Road, Bristol, BS3 2EJ, United Kingdom</span>
+                        </li>
+                        <li class="flex items-center gap-2.5">
+                            <i class="fa-solid fa-phone text-bristol-red"></i>
+                            <span>+44 (0) 117 963 0600</span>
+                        </li>
+                        <li class="flex items-center gap-2.5">
+                            <i class="fa-solid fa-envelope text-bristol-red"></i>
+                            <span>supporterservices@bcfc.co.uk</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Club Identity -->
+                <div>
+                    <h4 class="font-sport font-bold text-white text-lg mb-4">เอกลักษณ์สโมสร</h4>
+                    <div class="bg-bristol-darkcard p-4 rounded-2xl border border-white/5 space-y-2 text-xs">
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">ฉายา:</span>
+                            <span class="text-white font-semibold">The Robins (นกโรบิน)</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">สีประจำทีม:</span>
+                            <span class="text-bristol-red font-semibold">แดง (#E21A23) / ขาว</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">คู่ปรับสำคัญ:</span>
+                            <span class="text-white font-semibold">Bristol Rovers, Cardiff City</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">ลีกปัจจุบัน:</span>
+                            <span class="text-bristol-gold font-semibold">EFL Championship</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-4">
+                <p>&copy; 2026 Bristol City FC Thai Fan Portal. สงวนลิขสิทธิ์เพื่อการให้ข้อมูลแฟนบอล</p>
+                <p class="text-gray-400">Always Believe • <span class="text-bristol-red font-semibold">Come On You Reds!</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== INTERACTIVE MODAL (PLAYER & NEWS DETAILS) ==================== -->
+    <div id="detail-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/80 backdrop-blur-sm transition-opacity">
+        <div class="bg-bristol-darkcard border border-white/15 rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative animate-[fadeIn_0.2s_ease-out]">
+            <button onclick="closeModal()" aria-label="ปิดหน้าต่าง" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 hover:bg-bristol-red text-white flex items-center justify-center transition z-10">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div id="modal-body" class="p-6 sm:p-8">
+                <!-- Dynamic Modal Content -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== JAVASCRIPT LOGIC ==================== -->
+    <script>
+        // -------------------- 1. DATA REPOSITORY --------------------
+        
+        // ข้อมูลไทม์ไลน์ประวัติศาสตร์
+        const timelineData = [
+            {
+                year: "1894",
+                title: "กำเนิดสโมสร Bristol South End",
+                desc: "สโมสรก่อตั้งขึ้นอย่างเป็นทางการในย่าน Bedminster ทางตอนใต้ของเมืองบริสตอล ก่อนจะควบรวมกับทีมท้องถิ่นและเปลี่ยนชื่อเป็น Bristol City FC ในปี 1897 พร้อมเข้าสู่ระบบฟุตบอลอาชีพ"
+            },
+            {
+                year: "1907",
+                title: "รองแชมป์ลีกสูงสุดของอังกฤษ",
+                desc: "Bristol City สร้างประวัติศาสตร์เลื่อนชั้นสู่ First Division (ลีกสูงสุด) และคว้ารองแชมป์ลีกสูงสุดได้ทันทีในฤดูกาล 1906–07 ซึ่งเป็นผลงานที่ดีที่สุดในประวัติศาสตร์ลีกของสโมสร"
+            },
+            {
+                year: "1909",
+                title: "เข้าชิงชนะเลิศศึก FA Cup ที่คริสตัล พาเลซ",
+                desc: "ทัพ 'เดอะ โรบินส์' ทะลุเข้าสู่รอบชิงชนะเลิศฟุตบอลถ้วยที่เก่าแก่ที่สุดในโลกอย่าง FA Cup พบกับ แมนเชสเตอร์ ยูไนเต็ด แม้จะพ่ายไปอย่างหวุดหวิด 0-1 แต่ถือเป็นความภาคภูมิใจสูงสุดของชาวบริสตอล"
+            },
+            {
+                year: "1976",
+                title: "หวนคืนสู่ลีกสูงสุดอีกครั้ง",
+                desc: "ภายใต้การคุมทีมของ Alan Dicks สโมสรเลื่อนชั้นกลับสู่ลีกสูงสุดอังกฤษได้สำเร็จเป็นครั้งแรกในรอบ 65 ปี และยืนหยัดต่อกรกับยอดทีมอย่างลิเวอร์พูลและอาร์เซนอลได้อย่างสมศักดิ์ศรี"
+            },
+            {
+                year: "2015",
+                title: "ดับเบิลแชมป์ League One และ EFL Trophy",
+                desc: "ฤดูกาลแห่งความทรงจำ 2014–15 สโมสรคว้าแชมป์ลีกวันด้วยคะแนนทะลุ 99 แต้ม พร้อมคว้าแชมป์ Football League Trophy ที่สนามเวมบลีย์ ควบคู่กับการปรับปรุงสนาม Ashton Gate โฉมใหม่"
+            },
+            {
+                year: "2017",
+                title: "ล้มยักษ์พรีเมียร์ลีก 4 ทีมรวดใน คาราบาว คัพ",
+                desc: "สร้างปรากฏการณ์ช็อกวงการฟุตบอลอังกฤษด้วยการเขี่ยทีมพรีเมียร์ลีกตกรอบถึง 4 ทีมติดต่อกัน (วัตฟอร์ด, สโต๊ค, คริสตัล พาเลซ และ แมนเชสเตอร์ ยูไนเต็ด) ทะลุถึงรอบรองชนะเลิศศึก EFL Cup"
+            }
+        ];
+
+        // ข้อมูลโซนอัฒจันทร์สนาม Ashton Gate
+        const stadiumStands = {
+            dolman: {
+                name: "Dolman Stand (ดอลแมน สแตนด์)",
+                badge: "อัฒจันทร์ฝั่งตะวันออก • ฝั่งครอบครัวและแฟนพันธุ์แท้",
+                capacity: "ประมาณ 6,200 ที่นั่ง",
+                atmosphere: "บรรยากาศอบอุ่น มุมมองเห็นภาพรวมทั้งสนามชัดเจน เหมาะสำหรับครอบครัวและแฟนบอลที่ต้องการชมแท็กติกการเล่น",
+                features: ["โซน Family Area สำหรับเด็กและครอบครัว", "มุมมองระดับสายตาที่ยอดเยี่ยม", "ใกล้ร้านค้าของที่ระลึกสโมสร"]
+            },
+            lansdown: {
+                name: "Lansdown Stand (แลนส์ดาวน์ สแตนด์)",
+                badge: "อัฒจันทร์หลัก 2 ชั้น • ใหญ่และทันสมัยที่สุด",
+                capacity: "มากกว่า 11,000 ที่นั่ง",
+                atmosphere: "อัฒจันทร์ขนาดใหญ่ 2 ชั้นที่เป็นศูนย์กลางของสนาม เป็นที่ตั้งของซุ้มม้านั่งสำรอง ห้องแต่งตัวนักเตะ และห้องรับรอง VIP",
+                features: ["ที่นั่ง 2 ชั้นพร้อมหลังคาคลุมเต็มพื้นที่", "โซน Hospitality & Executive Boxes", "Sports Bar & Grill ขนาดใหญ่ด้านล่าง"]
+            },
+            south: {
+                name: "South Stand (เซาท์ สแตนด์)",
+                badge: "โซนกองเชียร์ฮาร์ดคอร์ • เสียงเชียร์กึกก้อง",
+                capacity: "ประมาณ 6,000 ที่นั่ง",
+                atmosphere: "จุดรวมพลของกลุ่มแฟนบอลพันธุ์แท้ที่ร้องเพลงเชียร์ตลอด 90 นาที สร้างแรงกดดันให้คู่แข่งได้มากที่สุดในสนาม",
+                features: ["โซน Safe Standing (ที่นั่งแบบยืนเชียร์ปลอดภัย)", "จุดเริ่มต้นเพลงเชียร์ประจำสโมสร", "บรรยากาศดุดันเร้าใจตลอดเกม"]
+            },
+            atyeo: {
+                name: "Atyeo Stand (อาตโย สแตนด์)",
+                badge: "ตั้งชื่อตามตำนานสโมสร John Atyeo",
+                capacity: "ประมาณ 3,800 ที่นั่ง",
+                atmosphere: "ตั้งชื่อเพื่อเป็นเกียรติแก่ John Atyeo ดาวยิงสูงสุดตลอดกาลของสโมสร (351 ประตู) ปัจจุบันใช้รองรับแฟนบอลทีมเยือนและแฟนเจ้าถิ่นบางส่วน",
+                features: ["มีรูปปั้นของ John Atyeo ตั้งตระหง่านด้านหน้า", "ระบบรักษาความปลอดภัยและทางเข้าแยกส่วนชัดเจน", "มุมมองหลังประตูฝั่งทิศเหนือ"]
+            }
+        };
+
+        // ข้อมูลรายชื่อนักเตะชุดใหญ่
+        const squadData = [
+            {
+                id: 1,
+                number: "1",
+                name: "Max O'Leary",
+                thaiName: "แม็กซ์ โอเลียรี",
+                pos: "GK",
+                posLabel: "ผู้รักษาประตู",
+                nationality: "ไอร์แลนด์",
+                age: 28,
+                height: "191 ซม.",
+                appearances: 145,
+                cleanSheets: 42,
+                bio: "ผลผลิตจากอะคาเดมีของ Bristol City ที่เติบโตขึ้นมาเป็นมือหนึ่งของทีมอย่างเต็มตัว โดดเด่นเรื่องปฏิกิริยาเซฟลูกยิงระยะเผาขนและการยืนตำแหน่งที่เหนียวแน่น"
+            },
+            {
+                id: 2,
+                number: "23",
+                name: "Stefan Bajic",
+                thaiName: "สเตฟาน บายิช",
+                pos: "GK",
+                posLabel: "ผู้รักษาประตู",
+                nationality: "ฝรั่งเศส",
+                age: 23,
+                height: "187 ซม.",
+                appearances: 18,
+                cleanSheets: 6,
+                bio: "นายทวารดาวรุ่งดีกรีเยาวชนทีมชาติฝรั่งเศส มีจุดเด่นในการใช้เท้าเปิดเกมจากแดนหลังและความคล่องตัวสูง"
+            },
+            {
+                id: 3,
+                number: "14",
+                name: "Zak Vyner",
+                thaiName: "แซ็ค ไวเนอร์",
+                pos: "DEF",
+                posLabel: "กองหลัง (เซ็นเตอร์แบ็ก)",
+                nationality: "อังกฤษ",
+                age: 27,
+                height: "188 ซม.",
+                appearances: 192,
+                goals: 5,
+                bio: "หัวใจในแนวรับที่อยู่กับสโมสรมาตั้งแต่อายุ 8 ขวบ แข็งแกร่ง อ่านเกมขาด และสามารถขยับไปเล่นแบ็กขวาได้อย่างยอดเยี่ยม"
+            },
+            {
+                id: 4,
+                number: "16",
+                name: "Rob Dickie",
+                thaiName: "ร็อบ ดิ๊กกี้",
+                pos: "DEF",
+                posLabel: "กองหลัง (เซ็นเตอร์แบ็ก)",
+                nationality: "อังกฤษ",
+                age: 28,
+                height: "193 ซม.",
+                appearances: 58,
+                goals: 6,
+                bio: "ปราการหลังร่างยักษ์จอมแกร่ง โดดเด่นในลูกกลางอากาศทั้งเกมรับและลูกตั้งเตะในกรอบเขตโทษคู่แข่ง"
+            },
+            {
+                id: 5,
+                number: "3",
+                name: "Cameron Pring",
+                thaiName: "คาเมรอน พริง",
+                pos: "DEF",
+                posLabel: "กองหลัง (แบ็กซ้าย)",
+                nationality: "อังกฤษ",
+                age: 26,
+                height: "183 ซม.",
+                appearances: 115,
+                goals: 4,
+                bio: "แบ็กซ้ายพลังม้าที่มีความเร็วและการเติมเกมรุกริมเส้นที่ดุดัน เป็นกำลังสำคัญทางกราบซ้ายของทัพเดอะ โรบินส์"
+            },
+            {
+                id: 6,
+                number: "8",
+                name: "Jason Knight",
+                thaiName: "เจสัน ไนท์ (กัปตันทีม)",
+                pos: "MID",
+                posLabel: "กองกลาง",
+                nationality: "ไอร์แลนด์",
+                age: 24,
+                height: "178 ซม.",
+                appearances: 74,
+                goals: 11,
+                bio: "กัปตันทีมจอมขยันผู้เป็นหัวใจในแดนกลาง วิ่งไม่มีหมดตลอด 90 นาที ตัดเกมดุดันและสอดขึ้นไปทำประตูสำคัญได้เสมอ"
+            },
+            {
+                id: 7,
+                number: "12",
+                name: "Max Bird",
+                thaiName: "แม็กซ์ เบิร์ด",
+                pos: "MID",
+                posLabel: "กองกลางตัวคุมจังหวะ",
+                nationality: "อังกฤษ",
+                age: 24,
+                height: "182 ซม.",
+                appearances: 42,
+                goals: 4,
+                bio: "มิดฟิลด์เท้าซ้ายจอมเทคนิค มีวิสัยทัศน์การจ่ายบอลที่แม่นยำทั้งสั้นและยาว รวมถึงลูกยิงไกลนอกกรอบเขตโทษอันตราย"
+            },
+            {
+                id: 8,
+                number: "17",
+                name: "Mark Sykes",
+                thaiName: "มาร์ค ไซค์ส",
+                pos: "MID",
+                posLabel: "กองกลางริมเส้น",
+                nationality: "ไอร์แลนด์",
+                age: 27,
+                height: "180 ซม.",
+                appearances: 96,
+                goals: 13,
+                bio: "ปีกขวาจอมขยันที่เล่นได้ทั้งวิงแบ็กและตัวรุกริมเส้น มีความเร็วและจังหวะครอสบอลที่แม่นยำ"
+            },
+            {
+                id: 9,
+                number: "21",
+                name: "Nahki Wells",
+                thaiName: "นาห์กี เวลส์",
+                pos: "FWD",
+                posLabel: "กองหน้า",
+                nationality: "เบอร์มิวดา",
+                age: 34,
+                height: "170 ซม.",
+                appearances: 205,
+                goals: 48,
+                bio: "ดาวยิงจอมเก๋าประสบการณ์สูงในศึกแชมเปียนชิพ หาพื้นที่ในกรอบเขตโทษเฉียบคมและเป็นแบบอย่างที่ดีให้นักเตะรุ่นน้อง"
+            },
+            {
+                id: 10,
+                number: "9",
+                name: "Sinclair Armstrong",
+                thaiName: "ซินแคลร์ อาร์มสตรอง",
+                pos: "FWD",
+                posLabel: "กองหน้า",
+                nationality: "ไอร์แลนด์",
+                age: 21,
+                height: "185 ซม.",
+                appearances: 35,
+                goals: 9,
+                bio: "หัวหอกดาวรุ่งพลังช้างสารที่เปี่ยมด้วยพละกำลังและความเร็ว สามารถฉีกแนวรับคู่แข่งได้ทุกจังหวะ"
+            },
+            {
+                id: 11,
+                number: "11",
+                name: "Anis Mehmeti",
+                thaiName: "อานิส เมห์เมติ",
+                pos: "FWD",
+                posLabel: "กองหน้า / ปีกซ้าย",
+                nationality: "แอลเบเนีย",
+                age: 24,
+                height: "180 ซม.",
+                appearances: 82,
+                goals: 16,
+                bio: "ตัวรุกสายเลี้ยงบอลจอมพลิ้ว มีทักษะการดวล 1 ต่อ 1 ที่ยอดเยี่ยมและการตัดเข้าในมายิงประตูที่เฉียบขาด"
+            },
+            {
+                id: 12,
+                number: "20",
+                name: "Sam Bell",
+                thaiName: "แซม เบลล์",
+                pos: "FWD",
+                posLabel: "กองหน้า",
+                nationality: "อังกฤษ",
+                age: 22,
+                height: "181 ซม.",
+                appearances: 88,
+                goals: 14,
+                bio: "ผลผลิตแท้ๆ ของสโมสรที่มีสัญชาตญาณการจบสกอร์ยอดเยี่ยมและเคลื่อนที่หาช่องได้ฉลาด"
+            }
+        ];
+
+        // ข้อมูลตารางแข่งขันและผลการแข่งขัน
+        const matchesData = {
+            upcoming: [
+                {
+                    date: "เสาร์ 14 พ.ย. 2026 • 22:00 น.",
+                    comp: "EFL Championship",
+                    home: "Bristol City",
+                    away: "Coventry City",
+                    venue: "Ashton Gate Stadium (เหย้า)",
+                    isHome: true
+                },
+                {
+                    date: "เสาร์ 21 พ.ย. 2026 • 22:00 น.",
+                    comp: "EFL Championship",
+                    home: "Norwich City",
+                    away: "Bristol City",
+                    venue: "Carrow Road (เยือน)",
+                    isHome: false
+                },
+                {
+                    date: "พุธ 25 พ.ย. 2026 • 02:45 น.",
+                    comp: "EFL Championship",
+                    home: "Bristol City",
+                    away: "Burnley",
+                    venue: "Ashton Gate Stadium (เหย้า)",
+                    isHome: true
+                },
+                {
+                    date: "เสาร์ 28 พ.ย. 2026 • 19:30 น.",
+                    comp: "Severnside Derby",
+                    home: "Cardiff City",
+                    away: "Bristol City",
+                    venue: "Cardiff City Stadium (เยือน)",
+                    isHome: false
+                }
+            ],
+            results: [
+                {
+                    date: "เสาร์ 7 พ.ย. 2026",
+                    comp: "EFL Championship",
+                    home: "Bristol City",
+                    away: "Sheffield United",
+                    score: "2 - 1",
+                    outcome: "W",
+                    scorers: "Anis Mehmeti 24', Jason Knight 78'"
+                },
+                {
+                    date: "อังคาร 3 พ.ย. 2026",
+                    comp: "EFL Championship",
+                    home: "Preston North End",
+                    away: "Bristol City",
+                    score: "1 - 1",
+                    outcome: "D",
+                    scorers: "Nahki Wells 61'"
+                },
+                {
+                    date: "เสาร์ 31 ต.ค. 2026",
+                    comp: "EFL Championship",
+                    home: "Bristol City",
+                    away: "Leeds United",
+                    score: "1 - 0",
+                    outcome: "W",
+                    scorers: "Sinclair Armstrong 53'"
+                },
+                {
+                    date: "เสาร์ 24 ต.ค. 2026",
+                    comp: "EFL Championship",
+                    home: "Stoke City",
+                    away: "Bristol City",
+                    score: "2 - 1",
+                    outcome: "L",
+                    scorers: "Rob Dickie 19'"
+                }
+            ]
+        };
+
+        // ข้อมูลข่าวสารสโมสร
+        const newsData = [
+            {
+                id: 1,
+                category: "รายงานหลังเกม",
+                date: "8 พฤศจิกายน 2026",
+                title: "เจสัน ไนท์ ซัดชัยท้ายเกม! เดอะ โรบินส์ เปิดรังเฉือน เชฟฯ ยูไนเต็ด 2-1",
+                summary: "บรรยากาศสุดเดือดที่ Ashton Gate เมื่อกัปตันทีม เจสัน ไนท์ ยิงประตูชัยนาทีที่ 78 พาทีมเก็บ 3 แต้มสำคัญขยับขึ้นโซนเพลย์ออฟ",
+                content: "ศึกฟุตบอล Sky Bet EFL Championship ที่สนาม Ashton Gate Stadium ท่ามกลางแฟนบอลกว่า 24,500 คน Bristol City โชว์ฟอร์มได้อย่างยอดเยี่ยม โดยได้ประตูขึ้นนำก่อนจากลูกปั่นโค้งสุดสวยของ อานิส เมห์เมติ ในนาทีที่ 24 ก่อนที่ทีมเยือนจะตามตีเสมอได้ในต้นครึ่งหลัง อย่างไรก็ตาม ในนาทีที่ 78 เจสัน ไนท์ กัปตันทีมวิ่งสอดเข้ามายิงเต็มข้อส่งบอลตุงตาข่าย ช่วยให้ Bristol City คว้าชัยชนะสุดมันส์ 2-1 เก็บเพิ่มเป็น 3 คะแนนสำคัญ"
+            },
+            {
+                id: 2,
+                category: "อัปเดตสโมสร",
+                date: "2 พฤศจิกายน 2026",
+                title: "เปิดศูนย์ฝึกซ้อม Robins High Performance Centre ต้อนรับเยาวชน",
+                summary: "สโมสรเดินหน้าปั้นดาวรุ่งท้องถิ่นอย่างต่อเนื่อง เปิดโครงการคัดเลือกเยาวชนรุ่นใหม่เข้าสู่อะคาเดมีระดับ Category 2",
+                content: "Bristol City FC ยืนยันความมุ่งมั่นในการสร้างนักเตะสายเลือดบริสตอลแท้ๆ ผ่านศูนย์ฝึกซ้อมระดับโลก Robins High Performance Centre ที่ Failand โดยในปีนี้มีนักเตะจากอะคาเดมีก้าวขึ้นสู่ทีมชุดใหญ่แล้วถึง 6 ราย สะท้อนปรัชญาของสโมสรที่เน้นการพัฒนาเยาวชนควบคู่กับความสำเร็จในสนาม"
+            },
+            {
+                id: 3,
+                category: "แฟนโซน & ตั๋วเข้าชม",
+                date: "29 ตุลาคม 2026",
+                title: "เตรียมพบกับกิจกรรม Fan Village พิเศษก่อนเกมดาร์บี้แมตช์",
+                summary: "เชิญชวนแฟนบอลร่วมสัมผัสบรรยากาศดนตรีสด อาหารท้องถิ่น และการพบปะตำนานนักเตะก่อนเกมเหย้านัดถัดไป",
+                content: "ฝ่ายกิจกรรมแฟนบอลของสโมสรเตรียมจัดงาน Fan Village บริเวณลานหน้าอัฒจันทร์ Lansdown Stand ตั้งแต่เวลา 12:00 น. ตามเวลาท้องถิ่น เพื่อสร้างสีสันก่อนเกมการแข่งขัน โดยจะมีอดีตนักเตะระดับตำนานมาร่วมพูดคุยแจกลายเซ็น พร้อมบูธจำหน่ายเสื้อแข่งชุดเหย้าสีแดง-ขาวรุ่นพิเศษประจำฤดูกาล"
+            }
+        ];
+
+        // -------------------- 2. RENDER FUNCTIONS --------------------
+
+        // Render Timeline
+        function initTimeline() {
+            const btnContainer = document.getElementById('timeline-buttons');
+            btnContainer.innerHTML = timelineData.map((item, idx) => `
+                <button onclick="selectTimeline(${idx})" id="tl-btn-${idx}" 
+                    class="tl-btn py-3 px-4 rounded-xl font-sport font-bold text-lg transition border ${idx === 0 ? 'bg-bristol-red text-white border-bristol-red shadow-lg shadow-bristol-red/30' : 'bg-white/5 text-gray-300 border-white/10 hover:bg-white/10'}">
+                    ${item.year}
+                </button>
+            `).join('');
+            selectTimeline(0);
+        }
+
+        function selectTimeline(index) {
+            const item = timelineData[index];
+            document.querySelectorAll('.tl-btn').forEach((btn, i) => {
+                if (i === index) {
+                    btn.className = "tl-btn py-3 px-4 rounded-xl font-sport font-bold text-lg transition border bg-bristol-red text-white border-bristol-red shadow-lg shadow-bristol-red/30";
+                } else {
+                    btn.className = "tl-btn py-3 px-4 rounded-xl font-sport font-bold text-lg transition border bg-white/5 text-gray-300 border-white/10 hover:bg-white/10";
+                }
+            });
+
+            document.getElementById('timeline-content').innerHTML = `
+                <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
+                    <span class="inline-block w-fit px-3 py-1 rounded-lg bg-bristol-red text-white font-sport font-extrabold text-xl">ปี ${item.year}</span>
+                    <h4 class="font-sport text-xl sm:text-2xl font-bold text-white">${item.title}</h4>
+                </div>
+                <p class="text-gray-300 text-sm sm:text-base leading-relaxed">${item.desc}</p>
+            `;
+        }
+
+        // Render Stadium Stand Details
+        function selectStand(standKey) {
+            const data = stadiumStands[standKey];
+            if (!data) return;
+
+            // Update SVG highlight
+            document.querySelectorAll('.stand-zone').forEach(el => el.classList.remove('stand-active'));
+            const activeZone = document.getElementById(`stand-${standKey}`);
+            if (activeZone) activeZone.classList.add('stand-active');
+
+            // Update Buttons
+            document.querySelectorAll('.stand-btn').forEach(btn => {
+                if (btn.dataset.stand === standKey) {
+                    btn.className = "stand-btn px-3 py-2 rounded-xl text-xs font-semibold bg-bristol-red text-white transition";
+                } else {
+                    btn.className = "stand-btn px-3 py-2 rounded-xl text-xs font-semibold bg-white/10 text-gray-300 hover:bg-white/20 transition";
+                }
+            });
+
+            // Update Info Card
+            document.getElementById('stand-detail-card').innerHTML = `
+                <span class="inline-block px-3 py-1 rounded-full bg-bristol-red/20 text-bristol-red text-xs font-semibold mb-3">
+                    ${data.badge}
+                </span>
+                <h3 class="font-sport text-2xl sm:text-3xl font-extrabold text-white mb-2">${data.name}</h3>
+                <div class="flex items-center gap-2 text-bristol-gold font-semibold text-sm mb-4">
+                    <i class="fa-solid fa-users"></i>
+                    <span>ความจุ: ${data.capacity}</span>
+                </div>
+                <p class="text-gray-300 text-sm leading-relaxed mb-5">${data.atmosphere}</p>
+                <div class="space-y-2 border-t border-white/10 pt-4">
+                    <div class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">จุดเด่นของโซนนี้:</div>
+                    ${data.features.map(f => `
+                        <div class="flex items-center gap-2 text-xs sm:text-sm text-gray-200">
+                            <i class="fa-solid fa-circle-check text-bristol-red"></i>
+                            <span>${f}</span>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        // Render Squad Cards
+        function filterSquad(position) {
+            // Update filter buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                if (btn.dataset.pos === position) {
+                    btn.className = "filter-btn active px-4 py-2.5 rounded-xl text-sm font-semibold bg-bristol-red text-white transition shadow-lg shadow-bristol-red/25";
+                } else {
+                    btn.className = "filter-btn px-4 py-2.5 rounded-xl text-sm font-semibold bg-white/5 text-gray-300 hover:bg-white/10 transition";
+                }
+            });
+
+            const filtered = position === 'ALL' ? squadData : squadData.filter(p => p.pos === position);
+            const grid = document.getElementById('squad-grid');
+
+            grid.innerHTML = filtered.map(player => `
+                <div onclick="openPlayerModal(${player.id})" 
+                    class="group cursor-pointer bg-bristol-darkcard rounded-3xl overflow-hidden border border-white/10 hover:border-bristol-red transition-all duration-300 hover:-translate-y-1.5 shadow-lg">
+                    <!-- Top Jersey Banner -->
+                    <div class="relative h-40 bg-gradient-to-br from-bristol-red via-bristol-darkred to-bristol-charcoal p-5 flex flex-col justify-between overflow-hidden">
+                        <span class="absolute -right-3 -bottom-6 font-sport font-black text-8xl text-white/15 select-none group-hover:scale-110 transition-transform">
+                            ${player.number}
+                        </span>
+                        <div class="flex justify-between items-start relative z-10">
+                            <span class="px-2.5 py-1 rounded-lg bg-black/40 backdrop-blur text-white text-xs font-semibold">
+                                ${player.posLabel}
+                            </span>
+                            <span class="font-sport font-black text-2xl text-white bg-white/15 w-10 h-10 rounded-xl flex items-center justify-center border border-white/20">
+                                ${player.number}
+                            </span>
+                        </div>
+                        <div class="relative z-10 flex items-center gap-2 text-xs text-white/90">
+                            <i class="fa-solid fa-flag text-bristol-gold"></i>
+                            <span>${player.nationality}</span>
+                        </div>
+                    </div>
+
+                    <!-- Player Info -->
+                    <div class="p-5">
+                        <h3 class="font-sport text-xl font-bold text-white group-hover:text-bristol-red transition">${player.name}</h3>
+                        <p class="text-xs text-gray-400 mb-4">${player.thaiName}</p>
+                        
+                        <div class="grid grid-cols-2 gap-2 pt-3 border-t border-white/10 text-xs">
+                            <div>
+                                <span class="text-gray-500 block">ลงสนาม</span>
+                                <span class="font-bold text-white">${player.appearances} นัด</span>
+                            </div>
+                            <div>
+                                <span class="text-gray-500 block">${player.pos === 'GK' ? 'คลีนชีต' : 'ทำประตู'}</span>
+                                <span class="font-bold text-bristol-gold">${player.pos === 'GK' ? player.cleanSheets + ' นัด' : player.goals + ' ประตู'}</span>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 text-center text-xs font-semibold text-bristol-red group-hover:underline">
+                            คลิกดูประวัติและสถิติ <i class="fa-solid fa-chevron-right ml-1"></i>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Render Fixtures & Results
+        function switchMatchTab(tab) {
+            const btnUpcoming = document.getElementById('tab-upcoming');
+            const btnResults = document.getElementById('tab-results');
+            const container = document.getElementById('matches-container');
+
+            if (tab === 'upcoming') {
+                btnUpcoming.className = "px-6 py-2.5 rounded-xl text-sm font-bold bg-bristol-red text-white transition shadow";
+                btnResults.className = "px-6 py-2.5 rounded-xl text-sm font-bold text-gray-400 hover:text-white transition";
+
+                container.innerHTML = matchesData.upcoming.map(m => `
+                    <div class="glass-card p-5 sm:p-6 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-4 hover:border-bristol-red/40 transition">
+                        <div class="text-center md:text-left md:w-1/4">
+                            <span class="text-xs font-semibold text-bristol-gold block">${m.comp}</span>
+                            <span class="text-xs sm:text-sm text-gray-300">${m.date}</span>
+                        </div>
+
+                        <div class="flex items-center justify-center gap-4 sm:gap-8 flex-1 w-full">
+                            <span class="font-sport font-bold text-base sm:text-xl text-right flex-1 ${m.home === 'Bristol City' ? 'text-bristol-red' : 'text-white'}">
+                                ${m.home}
+                            </span>
+                            <span class="px-3.5 py-1.5 rounded-xl bg-white/10 font-sport font-bold text-sm text-white">VS</span>
+                            <span class="font-sport font-bold text-base sm:text-xl text-left flex-1 ${m.away === 'Bristol City' ? 'text-bristol-red' : 'text-white'}">
+                                ${m.away}
+                            </span>
+                        </div>
+
+                        <div class="text-center md:text-right md:w-1/4">
+                            <span class="inline-flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full ${m.isHome ? 'bg-bristol-red/20 text-bristol-red' : 'bg-white/10 text-gray-300'}">
+                                <i class="fa-solid fa-location-dot"></i> ${m.venue}
+                            </span>
+                        </div>
+                    </div>
+                `).join('');
+            } else {
+                btnResults.className = "px-6 py-2.5 rounded-xl text-sm font-bold bg-bristol-red text-white transition shadow";
+                btnUpcoming.className = "px-6 py-2.5 rounded-xl text-sm font-bold text-gray-400 hover:text-white transition";
+
+                container.innerHTML = matchesData.results.map(m => {
+                    const badgeColor = m.outcome === 'W' ? 'bg-emerald-600 text-white' : (m.outcome === 'D' ? 'bg-amber-500 text-black' : 'bg-rose-600 text-white');
+                    const outcomeText = m.outcome === 'W' ? 'ชนะ' : (m.outcome === 'D' ? 'เสมอ' : 'แพ้');
+                    return `
+                    <div class="glass-card p-5 sm:p-6 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-4">
+                        <div class="text-center md:text-left md:w-1/4">
+                            <span class="text-xs font-semibold text-gray-400 block">${m.date}</span>
+                            <span class="text-xs text-bristol-gold">${m.comp}</span>
+                        </div>
+
+                        <div class="flex items-center justify-center gap-4 sm:gap-6 flex-1 w-full">
+                            <span class="font-sport font-bold text-base sm:text-xl text-right flex-1 ${m.home === 'Bristol City' ? 'text-white' : 'text-gray-400'}">
+                                ${m.home}
+                            </span>
+                            <span class="px-4 py-1.5 rounded-xl bg-bristol-red font-sport font-extrabold text-base sm:text-lg text-white tracking-wider">
+                                ${m.score}
+                            </span>
+                            <span class="font-sport font-bold text-base sm:text-xl text-left flex-1 ${m.away === 'Bristol City' ? 'text-white' : 'text-gray-400'}">
+                                ${m.away}
+                            </span>
+                        </div>
+
+                        <div class="text-center md:text-right md:w-1/4 flex flex-col items-center md:items-end gap-1">
+                            <span class="px-2.5 py-0.5 rounded text-xs font-bold ${badgeColor}">${outcomeText}</span>
+                            <span class="text-[11px] text-gray-400"><i class="fa-regular fa-futbol mr-1 text-bristol-red"></i>${m.scorers}</span>
+                        </div>
+                    </div>
+                `}).join('');
+            }
+        }
+
+        // Render News Grid
+        function renderNews() {
+            const grid = document.getElementById('news-grid');
+            grid.innerHTML = newsData.map(item => `
+                <article onclick="openNewsModal(${item.id})" class="group cursor-pointer bg-bristol-darkcard rounded-3xl overflow-hidden border border-white/10 hover:border-bristol-red/60 transition flex flex-col justify-between">
+                    <div>
+                        <div class="h-44 bg-gradient-to-tr from-bristol-charcoal via-bristol-darkred/60 to-bristol-red/40 p-6 flex flex-col justify-between relative">
+                            <span class="w-fit px-3 py-1 rounded-full bg-bristol-red text-white text-xs font-semibold">
+                                ${item.category}
+                            </span>
+                            <div class="text-xs text-gray-300">
+                                <i class="fa-regular fa-clock mr-1"></i> ${item.date}
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-sport text-xl font-bold text-white group-hover:text-bristol-red transition leading-snug mb-3">
+                                ${item.title}
+                            </h3>
+                            <p class="text-gray-400 text-sm line-clamp-3 leading-relaxed">
+                                ${item.summary}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-2">
+                        <span class="inline-flex items-center gap-2 text-sm font-semibold text-bristol-gold group-hover:translate-x-1 transition-transform">
+                            อ่านข่าวฉบับเต็ม <i class="fa-solid fa-arrow-right"></i>
+                        </span>
+                    </div>
+                </article>
+            `).join('');
+        }
+
+        // -------------------- 3. MODAL HANDLERS --------------------
+        function openPlayerModal(id) {
+            const p = squadData.find(x => x.id === id);
+            if (!p) return;
+
+            document.getElementById('modal-body').innerHTML = `
+                <div class="flex flex-col sm:flex-row items-center gap-6 pb-6 border-b border-white/10">
+                    <div class="w-24 h-24 rounded-3xl bg-gradient-to-br from-bristol-red to-bristol-darkred flex flex-col items-center justify-center border-2 border-white shadow-xl shrink-0">
+                        <span class="text-[10px] uppercase tracking-widest text-white/80">NO.</span>
+                        <span class="font-sport font-black text-4xl text-white leading-none">${p.number}</span>
+                    </div>
+                    <div class="text-center sm:text-left">
+                        <span class="px-3 py-1 rounded-full bg-bristol-red/20 text-bristol-red text-xs font-semibold">${p.posLabel}</span>
+                        <h3 class="font-sport text-3xl font-extrabold text-white mt-2">${p.name}</h3>
+                        <p class="text-gray-400 text-sm">${p.thaiName} • สัญชาติ ${p.nationality}</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 my-6">
+                    <div class="bg-black/40 p-3.5 rounded-2xl text-center">
+                        <span class="text-xs text-gray-400 block">อายุ</span>
+                        <span class="font-sport font-bold text-lg text-white">${p.age} ปี</span>
+                    </div>
+                    <div class="bg-black/40 p-3.5 rounded-2xl text-center">
+                        <span class="text-xs text-gray-400 block">ส่วนสูง</span>
+                        <span class="font-sport font-bold text-lg text-white">${p.height}</span>
+                    </div>
+                    <div class="bg-black/40 p-3.5 rounded-2xl text-center">
+                        <span class="text-xs text-gray-400 block">ลงสนามรวม</span>
+                        <span class="font-sport font-bold text-lg text-bristol-red">${p.appearances} นัด</span>
+                    </div>
+                    <div class="bg-black/40 p-3.5 rounded-2xl text-center">
+                        <span class="text-xs text-gray-400 block">${p.pos === 'GK' ? 'คลีนชีต' : 'ประตูรวม'}</span>
+                        <span class="font-sport font-bold text-lg text-bristol-gold">${p.pos === 'GK' ? p.cleanSheets : p.goals}</span>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-sport font-bold text-white text-lg mb-2">ข้อมูลและสไตล์การเล่น</h4>
+                    <p class="text-gray-300 text-sm sm:text-base leading-relaxed">${p.bio}</p>
+                </div>
+            `;
+
+            const modal = document.getElementById('detail-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function openNewsModal(id) {
+            const n = newsData.find(x => x.id === id);
+            if (!n) return;
+
+            document.getElementById('modal-body').innerHTML = `
+                <span class="inline-block px-3 py-1 rounded-full bg-bristol-red text-white text-xs font-semibold mb-3">
+                    ${n.category}
+                </span>
+                <h3 class="font-sport text-2xl sm:text-3xl font-extrabold text-white leading-snug mb-2">${n.title}</h3>
+                <div class="text-xs text-gray-400 mb-6 pb-4 border-b border-white/10">
+                    <i class="fa-regular fa-calendar mr-1.5 text-bristol-gold"></i> เผยแพร่เมื่อ: ${n.date} • โดย Bristol City Media Team
+                </div>
+                <p class="text-gray-200 text-sm sm:text-base leading-relaxed space-y-4">
+                    ${n.content}
+                </p>
+            `;
+
+            const modal = document.getElementById('detail-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('detail-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // Close modal when clicking backdrop
+        document.getElementById('detail-modal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        // -------------------- 4. NAVIGATION & SCROLLSPY --------------------
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Highlight active nav link on scroll
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 130;
+                if (scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active', 'text-white');
+                link.classList.add('text-gray-300');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active', 'text-white');
+                    link.classList.remove('text-gray-300');
+                }
+            });
+        });
+
+        // -------------------- 5. INITIALIZE ON LOAD --------------------
+        window.addEventListener('DOMContentLoaded', () => {
+            initTimeline();
+            selectStand('dolman');
+            filterSquad('ALL');
+            switchMatchTab('upcoming');
+            renderNews();
+        });
+    </script>
+</body>
+</html>
